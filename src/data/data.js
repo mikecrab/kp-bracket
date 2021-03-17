@@ -169,12 +169,12 @@ export const regions = {
                 {
                     "teamId": 27,
                     "seed": "9",
-                    "team": "Missouri"
+                    "team": "St. Bonaventure"
                 },
                 {
                     "teamId": 28,
                     "seed": "10",
-                    "team": "St. Bonaventure"
+                    "team": "Maryland"
                 },
                 {
                     "teamId": 29,
