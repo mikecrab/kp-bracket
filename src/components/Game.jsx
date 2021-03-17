@@ -9,12 +9,9 @@ class Game extends Component {
         this.state.game = props.game;
         this.state.topTeam = props.topTeam;
         this.state.bottomTeam = props.bottomTeam;
-        console.log(this.state);
     }
 
     componentDidUpdate(prevProps) {
-        console.log(prevProps);
-        console.log(this.props);
         if (this.props.topTeam && this.props.topTeam.seed !== prevProps.topTeam.seed) {
             this.setState({
                 topTeam: this.props.topTeam
@@ -28,24 +25,49 @@ class Game extends Component {
         }
     }
 
-    setWinnerOfGame(seed, s) {
-        console.log(s);
-        this.props.setWinnerOfGame(this.state.game.gameId, seed)
+    setWinnerOfGame(teamId) {
+        this.props.setWinnerOfGame(this.state.game.gameId, teamId)
     }
 
     render() {
         return <ul className="matchup">
-            <li onClick={() => this.setWinnerOfGame(this.state.topTeam.seed)} className="team team-top">
-                { this.state.topTeam &&
-                    <span>
-                        {this.state.topTeam.seed} {this.state.topTeam.team}
+            <li onClick={() => this.setWinnerOfGame(this.state.topTeam.teamId)} className="team team-top">
+                { this.state.topTeam.team &&
+                    <span className="team-info">
+                        <span className="seed-info">
+                            {this.state.topTeam.seed}. {this.state.topTeam.team}
+                        </span>
+                        <span className="kenpom-info">
+                            <span>
+                                {this.state.topTeam.adjEM} EM
+                            </span>
+                            <span>
+                                {this.state.topTeam.adjO} O
+                            </span>
+                            <span>
+                                {this.state.topTeam.adjD} D
+                            </span>
+                        </span>
                     </span>
                 }
             </li>
-            <li onClick={() => this.setWinnerOfGame(this.state.bottomTeam.seed)} className="team team-bottom">
-                { this.state.bottomTeam &&
-                    <span>
-                        {this.state.bottomTeam.seed} {this.state.bottomTeam.team}
+            <li onClick={() => this.setWinnerOfGame(this.state.bottomTeam.teamId)} className="team team-bottom">
+                { this.state.bottomTeam.team &&
+                    <span className="team-info">
+                        <span className="seed-info">
+                            {this.state.bottomTeam.seed}. {this.state.bottomTeam.team}
+                        </span>
+                        <span className="kenpom-info">
+                            <span>
+                                {this.state.bottomTeam.adjEM} EM
+                            </span>
+                            <span>
+                                {this.state.bottomTeam.adjO} O
+                            </span>
+                            <span>
+                                {this.state.bottomTeam.adjD} D
+                            </span>
+                        </span>
                     </span>
                 }
             </li>

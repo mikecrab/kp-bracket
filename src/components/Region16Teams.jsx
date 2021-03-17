@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import Region from "./Region";
 import Game from "./Game";
 
-class Region extends Component {
+class Region16Teams extends Region {
 
     constructor(props) {
         super(props);
@@ -40,53 +41,6 @@ class Region extends Component {
         }
 
         return games;
-    }
-
-    getWinnerOfGame(gameId) {
-        const game = this.getGameById(gameId);
-
-        if(game.winner) {
-            return this.getTeamById(game.winner);
-        } else {
-            return {
-                teamId: null,
-                seed: null,
-                team: null
-            }
-        }
-    }
-
-    getGameById(gameId) {
-        return this.state.games.find(game => game.gameId === gameId);
-    }
-
-    getTeamBySeed(seed) {
-        return this.state.teams.find(team => team.seed === seed);
-    }
-
-    getTeamById(teamId) {
-        return this.state.teams.find(team => team.teamId === teamId);
-    }
-
-    setWinnerOfGame(gameId, teamId) {
-        const gameIndex = this.state.games.findIndex(game => game.gameId === gameId);
-
-        const games = [...this.state.games];
-        const game = {
-            ...games[gameIndex],
-            winner: teamId
-        };
-
-        games[gameIndex] = game;
-
-        this.setState({
-            games: games
-        });
-
-        if(gameId === 15) {
-            const team = this.getTeamById(teamId);
-            this.props.setWinnerOfRegion(this.props.region, team);
-        }
     }
 
     render() {
@@ -148,4 +102,4 @@ class Region extends Component {
         </section>;
     }
 }
-export default Region;
+export default Region16Teams;
